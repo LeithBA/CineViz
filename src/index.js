@@ -1,4 +1,4 @@
 import './css/common.styl'
-import Classname from './js/Classname.js'
+import main from './js/main.js'
 
-new Classname()
+new main()

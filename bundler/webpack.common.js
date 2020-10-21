@@ -37,6 +37,24 @@ module.exports = {
         ],
       },
       {
+        test: /\.(fbx|glb|obj|3ds|gltf|wasm|bin)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { outputPath: 'assets/models/' },
+          },
+        ],
+      },
+      {
+        test: /\.(csv)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { outputPath: 'assets/data/' },
+          },
+        ],
+      },
+      {
         test: /\.(html)$/,
         use: ['html-loader'],
       },
