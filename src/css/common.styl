@@ -19,6 +19,7 @@ html, body {
     font-family: 'GT America Compressed';
     font-weight: lighter;
     background-color: #262626;
+    cursor: url(../textures/cursor.png), auto;
 }
 
 html, body {
@@ -69,6 +70,7 @@ h2{
   font-weight: lighter;
   font-size: 2em;
   margin: 4%;
+  width: 100%;
 }
 
 h3, a{
@@ -81,13 +83,14 @@ h3, a{
 }
 
 ul {
+  display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  margin: 0;
+  margin-top: 20px;
   padding-top: 0;
-  max-width: 60%
+  max-width: 100%
 }
 
 li{
@@ -98,6 +101,8 @@ li{
   float: left;
   margin: 0;
   padding-top: 0;
+  display: inline;
+
 }
 
 .main-container {
@@ -163,27 +168,69 @@ li{
   height: 50%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;}
+  justify-content: center;
+  opacity : 0%
+  }
 
 #title{
   text-shadow: 0px 0px 15px  #A60303;
-  font-weight: bold;
-  font-size: 10em;
-  margin-top: 0%;
+  font-weight: 100;
+  -webkit-text-stroke-width: 1px;
+  font-size: 6vw;
+  text-transform: uppercase;  
+  margin-top: 1%;
   margin-bottom: 1px;
 }
 #subTitle {
   margin: 0px;
+  font-family: 'GT America Compressed';
 }
 
 #synopsis {
   width: 50%
   }
 
-#infos {
+#infos, #nav {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  font-size: 10px;
+  font-weight: lighter;
+  }
+
+#nav {
+  flex-direction: row;
+  width: 100%;
+  margin: 0%;
+  margin-top: 2%;
+  justify-content: space-around;
+  align-content: center;
+  }
+
+
+#navElem{
+  width: 33%
+  word-wrap: overflow;
+  align-self: center;
+  }
+
+@keyframes fadeout {
+  0% {opacity: 100%}
+  100% {opacity: 0%}
+}
+@keyframes fadein {
+  0% {opacity: 0%}
+  100% {opacity: 100%}
+}
+
+.fadeout{
+    animation-name: fadeout;
+    animation-duration: 1s;
+  }
+  
+  .fadein{
+    animation-name: fadein;
+    animation-duration: 1s;
   }
