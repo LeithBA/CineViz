@@ -27,7 +27,6 @@ const camera = new THREE.PerspectiveCamera(20.4, window.innerWidth / window.inne
 const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
-const fontLoader = new THREE.FontLoader();
 const gltfLoader = new GLTFLoader();
 // const dracoLoader = new THREE.DRACOLoader();
 // dracoLoader.setDecoderPath('../javascript/');
@@ -44,6 +43,8 @@ const rating = document.getElementById("rating");
 const revenue = document.getElementById("revenue");
 const website = document.getElementById("website");
 const synopsis = document.getElementById("synopsis");
+const introDesc = document.getElementById("introDescription");
+
 
 let spotIntensity = 0;
 let spotMax = 3.0;
@@ -62,6 +63,7 @@ let currentMovie;
 let chairs = new Array(400);
 let maxRev = 0;
 let started = false;
+let step = 0;
 
 let camPos = new THREE.Vector3(0, -30, 285);
 //camPos = new THREE.Vector3(800, -100, 0); //DEBUG CAMERA
@@ -325,14 +327,18 @@ function updateText() {
 
 function start(){
     started = true;
+    console.log("started!");
     spotIntensity = spotMax;
     loadMovie(currentIndex);
     introScreen.classList.add("fadeout");
     movieData.classList.add("fadein");
-
+    console.log(movieData.style.opacity);
     setTimeout(function(){ 
     introScreen.style.opacity = "0%";
     movieData.style.opacity = "100%";
+    introScreen.classList.remove("fadeout");
+    movieData.classList.remove("fadein");
+    console.log(movieData.style.opacity);
     }, 1000);
 
 
@@ -375,6 +381,38 @@ function lerp(value1, value2, amount) {
     return value1 + (value2 - value1) * amount;
 }
 
+function nextStep()
+{
+    step ++;
+    let s = "";
+    switch(step)
+    {
+        case 1:
+            s = "The Movie Theatre has 400 seats."+ "\n" + "One Seat is equal to around 1.393.928 visitors.\n ($6.969.912,72 Box Office Revenues)";
+        break;
+        case 2:
+            s = "Use the Keyboard arrows to enter another room.";
+        break;
+        case 3:
+            s = "Grab your ticket and enjoy your session !";
+        break;
+        case 4:
+            start();
+        break;
+
+    }
+    introDesc.classList.add("fadeoutin");
+    setTimeout(function(){ 
+        introDesc.textContent = s;
+    }, 500);
+
+    setTimeout(function(){ 
+        introDesc.classList.remove("fadeoutin");
+    }, 1000);
+
+
+
+}
 
 //EVENTS
 
@@ -387,7 +425,7 @@ document.addEventListener("keydown", event => {
     switch (code) {
         case 32:
             if (started) break;
-            start();
+            nextStep();
             break;
         case 37:
             if (!started) break;
@@ -405,8 +443,10 @@ document.addEventListener("keydown", event => {
             loadMovie();
             break;
         case 82:
+            if (cannotTrans) break;
             currentIndex = Math.floor(Math.random()*data.length);
             loadMovie();
+            break;
         default:
             break;
     }
