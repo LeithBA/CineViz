@@ -1,7 +1,7 @@
 # ROOM 15
 
 ## Builds
-Tou can try it [here](http://room15.surge.sh).
+You can try it [here](http://room15.surge.sh).
 
 ## Description
 Based on the experience of going to the movies, we tried transcribing the different steps: 
