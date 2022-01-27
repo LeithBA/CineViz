@@ -8,7 +8,7 @@
     "event-emitter": "^0.3.5",
     "gl-matrix": "^3.3.0",
     "stats.js": "^0.17.0",
-    "three": "^0.121.1"
+    "three": "^0.137.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
